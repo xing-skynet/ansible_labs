@@ -9,3 +9,18 @@
   tasks:
     - nxos_facts:
 
+    - debug: var=vlan_list
+    - name: assert for certain version
+      assert:
+        that:
+        - "'{{ ansible_net_version }}' is match('^7')"
+
+    - name: create vlan 2018
+      nxos_vlan:
+        vlan_id: 2018
+
+    - name: re-gather facts
+      nxos_facts:
+
+
+    - debug: var=vlan_list

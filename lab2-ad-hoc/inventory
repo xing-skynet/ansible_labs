@@ -1,0 +1,15 @@
+n9k-standalone-02.localdomain ansible_ssh_host=10.1.150.14 ansible_ssh_user=admin ansible_ssh_pass=Cisco123
+csr1000v-pod-02.localdomain ansible_ssh_host=192.16.15.220 ansible_ssh_user=admin ansible_ssh_pass=Cisco123
+veos-pod-02.localdomain ansible_ssh_host=172.16.15.211 ansible_ssh_user=admin anisble_ssh_pass=Cisco123
+[network]
+n9k-standalone-02.localdomain
+csr1000v-pod-02.localdomain
+veos-pod-02.localdomain
+[9k]
+n9k-standalone-02.localdomain
+[csr]
+csr1000v-pod-02.localdomain
+[arista]
+veos-pod-02.localdomain
+[datacenter:children]
+network
