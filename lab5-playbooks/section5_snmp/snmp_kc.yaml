@@ -1,0 +1,24 @@
+---
+
+- name: Change SNMP settings
+  hosts: nxos
+  gather_facts: yes
+  
+  tasks:
+    
+    - name: Set the SNMP stuff
+      nxos_snmp_community:
+        state: "{{ snmp_state }}"
+        group: "{{ snmp_group }}"
+        community: "{{ snmp_community }}"
+      register: snmp_set
+    - debug: var=snmp_set
+    - nxos_facts:
+        gather_subset: config
+
+    - debug: var=ansible_net_config
+
+    - name: Check if community is created
+      assert:
+        that:
+        - "'{{ ansible_net_config | to_nice_json  }}' is search('snmp-server community {{ snmp_community }}')"

@@ -2,19 +2,19 @@
 
 - name: Set and IOS MOTD
   hosts: ios
-  gather_facts: yes
+  gather_facts: no
 
 
   tasks:
   - ios_facts:
 
-  - debug: var=motd_secret
   - debug: var=ansible_net_config
 
   - ios_banner:
       banner: motd
+      become: yes
       state: present
-      text: "{{ motd_secret }}"
+      text: {{ motd_secret }} 
 
   - ios_facts:
       gather_subset: config

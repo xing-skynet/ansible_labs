@@ -1,0 +1,16 @@
+---
+
+- name: Gather Switches  Facts
+  hosts: switches
+  connection: httpapi
+  gather_facts: yes
+
+  tasks:
+    - name: Gather devices facts
+      nxos_facts:
+
+    - name: Get device model
+      debug: var=ansible_net_model
+
+    - name: Get device version
+      debug: var=ansible_net_version 
